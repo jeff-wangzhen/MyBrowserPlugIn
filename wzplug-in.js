@@ -1,6 +1,4 @@
-var functionJSON = {
-    bilibili: false
-};
+var functionJSON = {};
 
 function setLocalStorage(cname, cvalue) {
     localStorage[cname] = cvalue;
@@ -24,11 +22,12 @@ var wzPlugin = function() {
     var sLocation = window.location.href;
     console.log("当前网址：", sLocation);
     if (sLocation.indexOf("blog.csdn.net") > -1) {
-        // var setCodeLineFloatNoneStyle = document.createElement('style');
-        // setCodeLineFloatNoneStyle.innerHTML = '.htmledit_views code ol li div.hljs-ln-code, .htmledit_views code ol li div.hljs-ln-numbers {\n' +
-        //     '    float: none !important;\n' +
-        //     '}';
-        // document.head.appendChild(setCodeLineFloatNoneStyle);
+        var setCodeLineFloatNoneStyle = document.createElement('style');
+        setCodeLineFloatNoneStyle.innerHTML = '.htmledit_views code ol li div.hljs-ln-code {\n' +
+            '    float: none !important;\n' +
+            '}';
+        console.log(setCodeLineFloatNoneStyle)
+        document.head.appendChild(setCodeLineFloatNoneStyle);
         var oReadButton = document.getElementById('btn-readmore');
         if (oReadButton !== null) {
             oReadButton.click();
@@ -66,24 +65,6 @@ var wzPlugin = function() {
             "docNode.get(0).removeAttribute(\"oncopy\");" +
             "console.log(\"可以复制\");}copyWZ();";
         document.body.appendChild(scriptNode);
-    } else if (sLocation.indexOf("www.bilibili.com") > -1) {
-        //默认关闭bilibili弹幕
-        var scriptNode = document.createElement("script");
-        scriptNode.innerHTML += "(function(){" +
-            "var count=0;timerFun();\n" +
-            "function timerFun(){\n" +
-            "count++;\n" +
-            "try{document.getElementsByClassName('bui-checkbox')[0].checked=" + !functionJSON["bilibili"] + ";\n" +
-            "if(count<20)throw '以防万一，多试几次';}\n" +
-            "catch(e){\n" +
-            " var timer=setTimeout(function(){\n" +
-            " timerFun();\n" +
-            " },1000)\n" +
-            "}\n" +
-            "}\n" +
-            "})();";
-        document.body.appendChild(scriptNode);
-        console.log(scriptNode)
     }
 
 
