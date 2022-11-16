@@ -2,14 +2,8 @@
     "name": "王振个人小插件",
     "description": "安装本插件，您可以：\n1.在浏览CSDN博客文章时将自动加载“阅读更多”；\n2.百度文库免会员复制（选中文字后右键复制或者ctrl+c均可，格式可能不保留）；\n3.360DOC免登录复制；\n如需更多功能请反馈到kill370354@qq.com，您的支持将带给我莫大的的动力！",
     "version": "1.1",
-    "permissions": [
-        "*://*/*",
-        "activeTab",
-        "tabs",
-        "contextMenus",
-        "webRequest",
-        "webRequestBlocking",
-        "storage"
+    "host_permissions": [
+        "*://*/*"
     ],
     "icons":
     {
@@ -21,12 +15,6 @@
 //        "scripts": ["bg.js"],
 //        "persistent": true
 //    },
-    "browser_action":
-    {
-        "default_title": "王振个人小插件",
-        "default_popup": "popup.html",
-        "default_icon": "wzplug-in.png"
-    },
     "content_scripts": [
     {
         "all_frames": true,
@@ -38,5 +26,5 @@
         ],
         "run_at": "document_end"
     }],
-    "manifest_version": 2
+    "manifest_version": 3
 }
